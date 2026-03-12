@@ -4,7 +4,7 @@
   "description": "A browser-based tool to infer some data from uploaded gerber files",
   "scripts": {
     "start": "python3 -m http.server 8080",
-    "test": "node tests/gerber-parser.test.js"
+    "test": "node tests/gerber-parser.test.js && node tests/odb-parser.test.js"
   },
   "repository": {
     "type": "git",

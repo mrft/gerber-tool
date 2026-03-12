@@ -17,6 +17,9 @@
   --color-text-muted:   #64748b;
   --color-accent:       #4f46e5;
   --color-accent-hover: #4338ca;
+  --color-odb:          #0891b2;
+  --color-odb-bg:       #ecfeff;
+  --color-odb-border:   #a5f3fc;
   --color-success:      #16a34a;
   --color-warning:      #d97706;
   --color-error:        #dc2626;
@@ -99,22 +102,14 @@
 .drop-zone {
   border: 2px dashed var(--color-border);
   border-radius: var(--radius);
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  cursor: pointer;
   transition: border-color 0.15s, background 0.15s;
   text-align: center;
   background: var(--color-surface);
-  outline: none;
-}
-
-.drop-zone:hover,
-.drop-zone:focus-visible {
-  border-color: var(--color-accent);
-  background: #ede9fe20;
 }
 
 .drop-zone--active {
@@ -135,9 +130,45 @@
   font-size: 1.05rem;
 }
 
-.drop-zone__hint {
+.drop-zone__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.drop-zone__sep {
+  font-size: 0.8rem;
   color: var(--color-text-muted);
-  font-size: 0.875rem;
+}
+
+.drop-zone__btn {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-accent);
+  background: transparent;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.drop-zone__btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.drop-zone__btn--odb {
+  border-color: var(--color-odb);
+  color: var(--color-odb);
+}
+
+.drop-zone__btn--odb:hover {
+  background: var(--color-odb);
+  color: #fff;
 }
 
 /* ─── Results section ───────────────────────────────────────────────────────── */
@@ -243,6 +274,7 @@
 .badge--processing { background: #fffbeb; color: var(--color-warning); }
 .badge--done       { background: var(--color-done-bg); color: var(--color-success); }
 .badge--error      { background: var(--color-error-bg); color: var(--color-error); }
+.badge--odb        { background: var(--color-odb-bg); color: var(--color-odb); border: 1px solid var(--color-odb-border); }
 
 /* ─── Stat grid ─────────────────────────────────────────────────────────────── */
 
@@ -250,6 +282,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.75rem;
+}
+
+.stat-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.5rem;
 }
 
 .stat {
@@ -338,6 +375,54 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* ─── ODB++ paste layers ─────────────────────────────────────────────────────── */
+
+.paste-layers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.paste-layer {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.paste-layer__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  background: var(--color-surface-alt);
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.875rem;
+  gap: 1rem;
+}
+
+.paste-layer__summary:hover {
+  background: var(--color-border);
+}
+
+.paste-layer__name {
+  font-weight: 600;
+  color: var(--color-odb);
+}
+
+.paste-layer__area {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+.paste-layer__body {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* ─── Summary card ──────────────────────────────────────────────────────────── */
 
 .summary-card {
@@ -370,11 +455,8 @@
     --color-done-border:  #14532d;
     --color-error-bg:     #1c0a0a;
     --color-error-border: #7f1d1d;
-  }
-
-  .drop-zone:hover,
-  .drop-zone:focus-visible {
-    background: #312e8130;
+    --color-odb-bg:       #083344;
+    --color-odb-border:   #0e7490;
   }
 
   .drop-zone--active {

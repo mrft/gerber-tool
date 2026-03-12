@@ -90,7 +90,7 @@ function fmtArea(area, units, extraDecimals = 0) {
   }
   // inches → also show mm² conversion
   const mm2 = area * IN2_TO_MM2;
-  return `${area.toFixed(6)} in² (≈ ${mm2.toFixed(4)} mm²`;
+  return `${area.toFixed(6)} in² (≈ ${mm2.toFixed(4)} mm²)`;
 }
 
 function toMm2(area, units) {

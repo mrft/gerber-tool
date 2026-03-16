@@ -4,10 +4,12 @@ A browser-based tool to infer some data from uploaded Gerber files.
 
 ## Features
 
-- **Upload** one or more Gerber RS-274X stencil/paste files (drag-and-drop or click to browse)
-- **Calculate** the total stencil aperture opening area for each file
-- **Supports** all four standard aperture shapes: Circle (C), Rectangle (R), Oval (O), Polygon (P)
-- **Grand total** across multiple files (auto-converted to mm²)
+- **Upload** Gerber RS-274X stencil/paste files (drag-and-drop or click to browse)
+- **Upload** ODB++ job folders (drag-and-drop or folder picker; Firefox-compatible fallback)
+- **Calculate** the total stencil aperture opening area per file / per paste layer
+- **Gerber** aperture shapes: Circle (C), Rectangle (R), Oval (O), Polygon (P)
+- **ODB++** symbol shapes: Circle (r), Square (s), Rectangle (rect), Oval (oval), Donut (di), Hexagon (hex_l/hex_s)
+- **Grand total** across multiple files/folders (all normalised to mm²)
 - **Zero build step** — runs directly in the browser using native ES modules
 
 ## How to run
@@ -23,7 +25,7 @@ No bundler or build tool required.
 ## Testing
 
 ```bash
-npm test           # runs the gerber-parser unit tests with Node.js
+npm test           # runs the Gerber and ODB++ parser unit tests with Node.js
 ```
 
 ## Architecture
@@ -34,8 +36,10 @@ npm test           # runs the gerber-parser unit tests with Node.js
 | `styles.css` | Responsive styles (light/dark mode via `prefers-color-scheme`) |
 | `js/app.js` | UI components built with [uhtml](https://github.com/WebReflection/uhtml) |
 | `js/gerber-parser.js` | Pure-JS RS-274X Gerber parser — aperture area calculation |
+| `js/odb-parser.js` | Pure-JS ODB++ parser — paste layer detection and symbol area calculation |
 | `js/vendor/uhtml.js` | Vendored uhtml build (no CDN dependency at runtime) |
-| `tests/gerber-parser.test.js` | Unit tests for the parser |
+| `tests/gerber-parser.test.js` | Unit tests for the Gerber parser |
+| `tests/odb-parser.test.js` | Unit tests for the ODB++ parser |
 
 ## Supported file extensions
 

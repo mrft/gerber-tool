@@ -17,8 +17,5 @@
   "bugs": {
     "url": "https://github.com/mrft/gerber-tool/issues"
   },
-  "homepage": "https://github.com/mrft/gerber-tool#readme",
-  "dependencies": {
-    "uhtml": "^5.0.9"
-  }
+  "homepage": "https://github.com/mrft/gerber-tool#readme"
 }

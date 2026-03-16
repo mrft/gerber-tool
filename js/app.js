@@ -1,6 +1,6 @@
 /**
  * Gerber Tool – Stencil Aperture Area Calculator
- * Main application module using uhtml (zero-build, CDN-imported).
+ * Main application module using uhtml (zero-build, vendored local copy; no CDN).
  *
  * uhtml docs: https://github.com/WebReflection/uhtml
  */
@@ -211,7 +211,7 @@ function DropZone() {
   return html`
     <div
       class="${cls}"
-      ondragover="${(e) => { e.preventDefault(); setState({ isDragging: true }); }}"
+      ondragover="${(e) => { e.preventDefault(); if (!state.isDragging) setState({ isDragging: true }); }}"
       ondragleave="${() => setState({ isDragging: false })}"
       ondrop="${handleDrop}"
       role="region"
